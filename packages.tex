@@ -1,0 +1,215 @@
+%% REMEMBER: The order of package imports is sometimes important
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Language and font encodings
+%%
+\usepackage[english]{babel}
+% NB https://tex.stackexchange.com/a/49613
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Page size and margins etc.
+%%
+\usepackage[a4paper,top=2cm,bottom=4cm,inner=4cm,outer=2.5cm,twoside]{geometry}
+\usepackage{layout}
+\usepackage{lineno}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematics and lists
+%%
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{enumitem}
+% Compact lists; https://stackoverflow.com/a/4974583
+\setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Graphics
+\usepackage{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hyperlinks
+% Re: print version, see https://tex.stackexchange.com/a/95009
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+% \usepackage[colorlinks=true, allcolors=blue, hidelinks=true]{hyperref}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% For TO-DO notes in margins
+%%
+\usepackage[colorinlistoftodos]{todonotes}
+\reversemarginpar    % puts todo notes on the inner (larger) margin
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% More mathematics and other things...
+%%
+\usepackage{amssymb}
+\usepackage{siunitx}
+% gensymb provides \degree
+\usepackage{textcomp, gensymb}
+% For sidewaystable and sidewaysfigure
+\usepackage{rotating}
+\usepackage[toc,acronym,nonumberlist]{glossaries}
+\usepackage[toc,page]{appendix}
+% Make figure captions smaller
+\usepackage[textfont={small},labelfont={small,bf}]{caption}
+% Makes list of figures, tables appear in table of contents
+\usepackage[nottoc]{tocbibind}
+\usepackage{setspace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% DEPRECATED
+% %% Bibliography using natbib
+% %% https://www.overleaf.com/learn/latex/Bibliography_management_with_natbib
+% %% http://merkel.texture.rocks/Latex/natbib.php
+% %% https://tex.stackexchange.com/a/39457
+% %% agsm provides Harvard style
+% \usepackage{doi}     % clickable doi's, must be loaded before natbib
+% \usepackage{natbib}
+% \bibliographystyle{abbrvnat}
+% % \bibliographystyle{agsm}
+% % \bibliographystyle{humannat}
+% % \bibliographystyle{alpha}
+% % \bibliographystyle{apalike}
+% % \setcitestyle{authoryear}
+% % \setcitestyle{authoryear,open={((},close={))}}
+% % Must use \bibliography{references} in main.tex
+%% http://merkel.texture.rocks/Latex/natbib.php
+%% https://tex.stackexchange.com/a/39457
+%% agsm provides Harvard style
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography using biblatex
+%% https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX
+%% https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX
+%% https://tex.stackexchange.com/a/5105
+%% MANUAL: http://mirrors.ibiblio.org/CTAN/macros/latex/exptl/biblatex/doc/biblatex.pdf
+\usepackage{csquotes}
+\usepackage[
+    % Provide compatibility with natbib's \citet and \citep commands
+    natbib=true,
+    backend=biber,
+    bibstyle=authoryear,
+    citestyle=authoryear-comp,
+    % sorting=nyt,
+    % Don't replace repeated author name with dash
+    %  see manual page 72 (authoryear)
+    dashed=false, 
+    % Don't print the url fields (will be a problem for referencing websites)
+    url=false,
+    % Only print forename initials
+    %  https://tex.stackexchange.com/a/128823
+    % NB: doesn't affect sorting (beware of mix of names and initials)
+    giveninits=true,
+    % Don't print initials in citations
+    %  https://tex.stackexchange.com/a/134544
+    uniquename=false,
+    uniquelist=false,
+    % Show at most 6 names, followed by et al.
+    %  https://tex.stackexchange.com/a/76251
+    minbibnames=6,
+    maxbibnames=6,
+    % Show at most 2 names in citations
+    %  https://tex.stackexchange.com/a/368042
+    maxcitenames=2,
+    % Sort list by (first author) name, year, title
+    % https://tex.stackexchange.com/a/203270
+    % Why doesn't maxsortnames do this?
+    % maxalphanames=1,
+    % labelalpha=true,
+    % sorting=anyt,
+    % Sort set members
+    % sortsets=true,
+    % must be set after maxbibnames, maxcitenames
+    % minsortnames=1,
+    % maxsortnames=1,     % DOESN'T APPEAR TO BE WORKING?
+    % sortfirstinits=True,
+    % Sort citations in the same way as the bibliography (default?)
+    % sortcites=true,
+]{biblatex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PROVIDE YOUR REFERENCES LOCATION HERE
+%%
+\addbibresource{references.bib}
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% More complicated biblatex stuff
+%
+% 1)
+% Sort bibliography (and citations) by first author name only
+% https://tex.stackexchange.com/a/434947
+% NB: bibtex file (from Mendeley) must not contain mix of first names and initials like:
+%  Last, First;   Last, F.
+% (that will interfere with the sorting)
+% 2)
+% Undo Mendeley's auto-escaping of special characters in url/doi fields
+% https://tex.stackexchange.com/a/309995
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=author, match=\regexp{(.*?)\s+and\s+}]
+      \step[fieldset=sortname, fieldvalue={$1}]
+    }
+    % % Undo Mendeley's auto-escaping of special characters in url/doi fields
+    % % https://tex.stackexchange.com/a/309995
+    \map{ % Replaces '{\_}', '{_}' or '\_' with just '_'
+        \step[fieldsource=doi,
+              match=\regexp{\{\\\_\}|\{\_\}|\\\_},
+              replace=\regexp{\_}]
+        }
+    \map{ % Replaces '{'$\sim$'}', '$\sim$' or '{~}' with just '~'
+        \step[fieldsource=doi,
+              match=\regexp{\{\$\\sim\$\}|\{\~\}|\$\\sim\$},
+              replace=\regexp{\~}]
+    }
+  }
+}
+%
+% Print url if no doi
+% https://tex.stackexchange.com/a/424775
+\renewbibmacro*{doi+eprint+url}{%
+    \printfield{doi}%
+    \newunit\newblock%
+    \iftoggle{bbx:eprint}{%
+        \usebibmacro{eprint}%
+    }{}%
+    \newunit\newblock%
+    \iffieldundef{doi}{%
+        \usebibmacro{url+urldate}}%
+        {}%
+    }
+%
+% Get rid of ISSNs
+% https://tex.stackexchange.com/a/40107
+\AtEveryBibitem{\clearfield{issn}}
+%
+% fix period before brackets in citation
+%  https://tex.stackexchange.com/a/312565
+\DeclareDelimFormat[cbx@textcite]{nameyeardelim}{\addspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tikz setup
+% https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+% https://tex.stackexchange.com/a/342227
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=80, trapezium right angle=100, trapezium stretches=true, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]

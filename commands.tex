@@ -1,0 +1,21 @@
+% Fix equation environment to be compatible with line numbering
+% https://tex.stackexchange.com/a/404726
+\let\oldequation\equation
+\let\oldendequation\endequation
+\renewenvironment{equation}
+  {\linenomathNonumbers\oldequation}
+  {\oldendequation\endlinenomath}
+ 
+\let\oldalign\align
+\let\oldendalign\endalign
+\renewenvironment{align}
+  {\linenomathNonumbers\oldalign}
+  {\oldendalign\endlinenomath}
+
+% Set line spacing to 1.5
+\renewcommand{\baselinestretch}{1.5}
+
+
+% Set your own macros for convenience, e.g.
+% \newcommand{\MCOF}{\texttt{\detokenize{MCO_SHA_2F}}}
+% This will allow you to use \MCOF anywhere, to produce the text MCO_SHA_2F

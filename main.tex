@@ -1,0 +1,43 @@
+
+\documentclass[openright,twoside,a4paper,english,12pt]{book}
+
+\input{packages}
+\input{commands}
+\input{glossary}
+
+% Set includeonly if you only want to compile one chapter
+% See https://en.wikibooks.org/wiki/TeX/includeonly
+% Just modify it to choose which chapter(s) to compile
+% This is useful when you are only working on one chapter
+%  so you only have to wait for *one* chapter to compile each time.
+%
+% \includeonly{chap1/chap1}
+%
+
+\begin{document}
+
+    \frontmatter    % page numbering i, ii, ...
+    \include{titlepage}
+    %% Preface contains:
+    %%  Abstract, Lay summary, Declaration, Acknowledgements
+    %%  table of contents, list of figures, tables, glossary
+    \include{preface}
+
+    % Turn on line numbering
+    % Just remove this line to turn it off
+    \linenumbers
+    
+    \mainmatter     % page numbering 1, 2, ...
+    \include{chap1/chap1}
+    \include{chap2/chap2}
+    
+    \cleardoublepage
+    % Place the bibliography, with single-spacing and small font
+    % "heading=bibintoc" makes it appear in the table of contents
+    \renewcommand{\baselinestretch}{1.0}
+    \renewcommand*{\bibfont}{\small}
+    \printbibliography[heading=bibintoc]
+    
+    % \include{appendices/appendix1}
+
+\end{document}

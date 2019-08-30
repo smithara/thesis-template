@@ -1,0 +1,21 @@
+% https://www.overleaf.com/learn/latex/Glossaries
+
+\makeglossaries
+
+% A simpler macro if you only want a simple glossary
+%  with no linking, or defining terms in-text
+\newcommand{\glossterm}[2]{
+    \newglossaryentry{#1}{
+        name=#1,
+        description={#2}
+    }
+}
+
+\glossterm{MCT}{My complicated term}
+\glossterm{VHF}{Very hard formula}
+
+
+% Add all terms to glossary
+% (normally they only appear when linked to in the main text)
+% https://tex.stackexchange.com/a/14904
+\glsaddall
