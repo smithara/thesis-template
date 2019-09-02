@@ -14,18 +14,18 @@ I made some complicated setup with the biblatex import (see packages.tex) to get
 
 # Useful references
 
-https://www.overleaf.com/learn
-http://ctan.mines-albi.fr/info/latex-refsheet/LaTeX_RefSheet.pdf
-http://www.latex4ei.de/downloads/LaTeX_CheatSheet.pdf
-https://www.overleaf.com/learn/latex/Management_in_a_large_project
-https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
+- https://www.overleaf.com/learn
+- http://ctan.mines-albi.fr/info/latex-refsheet/LaTeX_RefSheet.pdf
+- http://www.latex4ei.de/downloads/LaTeX_CheatSheet.pdf
+- https://www.overleaf.com/learn/latex/Management_in_a_large_project
+- https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_1):_Basic_Structure
 
 # Use Mendeley
 
 Use the Mendeley reference manager and link it here. First remove the example references.bib file in this template. Then in Overleaf: Click Upload (small button at the top left), then "From Mendeley". Follow instructions to login to your Mendeley account and link your new references.bib. Whenever you modify the Mendeley library, make sure it is sync'd to the Mendeley account (click "Sync" in Mendeley), then click on references.bib in Overleaf and click "Refresh".
 
 # Overall structure
-
+```
  ├─ main.tex : frontmatter: {cover, abstract, lay summary, declaration, ackn,
                              contents, figlist, tablist, glossary}
                mainmatter:  {chapters}
@@ -48,7 +48,7 @@ Chapters structure:
  |        ├─ fig2.png etc.
  |     ├─ /chapter1.tex
  |  ├─ /chapter2/ etc.
-    
+
 Use \includeonly{chap3/chap3.tex, chap4/chap4.tex} to limit the compilation
   [see lines 76-86]
 Select [Fast/draft] in the drop-down menu from [Compile] to compile without images & links
@@ -57,13 +57,13 @@ Chapter names:
 1) intro/intro.tex    Introduction
 2) chap1/chap1.tex    Chapter 1
 8) conc/conc.tex      Conclusion
-
+```
 
 
 # Edinburgh thesis format rules
 
 Ed Thesis Format: https://www.ed.ac.uk/files/atoms/files/thesisbinding.pdf
-
+```
 4cm binding margin
 2cm head margin
 2.5cm fore-edge margin
@@ -79,7 +79,7 @@ Title page
 Abstract
 Lay summary
 Signed declaration
-
+```
 
 
 # (UN)LICENSE
