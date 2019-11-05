@@ -11,6 +11,18 @@ It uses biblatex+biber (instead of natbib) - see https://tex.stackexchange.com/a
 
 I made some complicated setup with the biblatex import (see packages.tex) to get things behaving how I wanted them - this might be a bit fragile!
 
+# Setup
+
+[Overleaf](https://overleaf.com) is the easiest way to start using Latex.
+
+1. Make an account there. Use your institutional email [if your institution is signed up](https://www.overleaf.com/for/universities) - this will give you "Professional" access which I think is required for the direct Mendeley integration (otherwise just upload the .bib file manually each time you update it).
+
+2. Once signed into Overleaf, you can create a new project from [a zip file of this repository](https://github.com/smithara/thesis-template/archive/master.zip) - from the [Projects dashboard](https://www.overleaf.com/project), click ``New Project / Upload Project``.
+
+3. You might then create a copy of the project and rename it to your own project and modify it with your content, keeping the original copy as a reference.
+
+Compilation (building the pdf) is probably slower on Overleaf than your own computer, and could time out if it takes too long (could be 5 minutes?) - in this case you might be using [Texmaker](https://www.xm1math.net/texmaker/). Texmaker does not use biber by default, so change the "Quick Build" button to ``pdflatex %.tex | biber % | pdflatex %.tex | evince %.pdf``
+
 
 # Useful references
 
@@ -22,7 +34,7 @@ I made some complicated setup with the biblatex import (see packages.tex) to get
 
 # Use Mendeley
 
-Use the Mendeley reference manager and link it here. First remove the example references.bib file in this template. Then in Overleaf: Click Upload (small button at the top left), then "From Mendeley". Follow instructions to login to your Mendeley account and link your new references.bib. Whenever you modify the Mendeley library, make sure it is sync'd to the Mendeley account (click "Sync" in Mendeley), then click on references.bib in Overleaf and click "Refresh".
+Use the [Mendeley reference manager](https://www.mendeley.com/) and link it to Overleaf. First remove the example `references.bib` file already in this template. Then in Overleaf: Click Upload (small button at the top left), then "From Mendeley". Follow instructions to login to your Mendeley account and link your new references.bib. Whenever you modify the Mendeley library, make sure it is sync'd to the Mendeley account (click "Sync" in Mendeley), then click on references.bib in Overleaf and click "Refresh".
 
 # Overall structure
 ```
@@ -62,7 +74,12 @@ Chapter names:
 
 # Edinburgh thesis format rules
 
-Ed Thesis Format: https://www.ed.ac.uk/files/atoms/files/thesisbinding.pdf
+This template should follow [the thesis format rules for Edinburgh University](https://www.ed.ac.uk/files/atoms/files/thesisbinding.pdf) for two-sided A4 printing. It may be close enough for other institutions, but shouldn't be too hard to modify, e.g.:
+
+- in `packages.tex`, change the line `\usepackage[a4paper,top=2cm,bottom=4cm,inner=4cm,outer=2.5cm,twoside]{geometry}`
+- in `main.tex`, change `\documentclass[openright,twoside,a4paper,english,12pt]{book}`
+
+Edinburgh thesis format summary:
 ```
 4cm binding margin
 2cm head margin
