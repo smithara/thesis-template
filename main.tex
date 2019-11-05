@@ -34,9 +34,11 @@
     \cleardoublepage
     % Place the bibliography, with single-spacing and small font
     % "heading=bibintoc" makes it appear in the table of contents
-    \renewcommand{\baselinestretch}{1.0}
+    % \renewcommand{\baselinestretch}{1.0}
     \renewcommand*{\bibfont}{\small}
-    \printbibliography[heading=bibintoc]
+    \begin{spacing}{1}  % temporarily change to more compact lines
+        \printbibliography[heading=bibintoc]
+    \end{spacing}
     
     % \include{appendices/appendix1}
 
