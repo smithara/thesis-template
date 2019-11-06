@@ -18,6 +18,10 @@
 
     \frontmatter    % page numbering i, ii, ...
     \include{titlepage}
+    
+    % set line spacing of 1.5 (uses the setspace package)
+    \onehalfspacing
+    
     %% Preface contains:
     %%  Abstract, Lay summary, Declaration, Acknowledgements
     %%  table of contents, list of figures, tables, glossary
@@ -28,6 +32,7 @@
     \linenumbers
     
     \mainmatter     % page numbering 1, 2, ...
+    % 
     \include{chap1/chap1}
     \include{chap2/chap2}
     
@@ -40,6 +45,6 @@
         \printbibliography[heading=bibintoc]
     \end{spacing}
     
-    % \include{appendices/appendix1}
+    \include{appendices/appendix1}
 
 \end{document}
